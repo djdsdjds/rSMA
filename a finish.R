@@ -2,7 +2,7 @@ library(quantstrat)
 library(quantmod)
 library(knitr)
 #when i made this i was new to r, and wasnt able to do this in r , so i printed what i wanted with c++.
-#every possible 
+#test every combination of fast/slow sma up to 200
 X<-list(c(1,2),
         c(1,3),
         c(2,3),
