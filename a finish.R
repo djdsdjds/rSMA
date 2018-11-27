@@ -1,6 +1,8 @@
 library(quantstrat)
 library(quantmod)
 library(knitr)
+#when i made this i was new to r, and wasnt able to do this in r , so i printed what i wanted with c++.
+#every possible 
 X<-list(c(1,2),
         c(1,3),
         c(2,3),
@@ -4998,9 +5000,7 @@ add.signal(strat.name, name = "sigCrossover",
            arguments = list(columns = c(fastSMA.label, slowSMA.label), relationship = "lt"),
            label = "fast.crossed.below.slow")
 
-# Long rules
-############
-
+# Long
 # Enter when the fast SMA crosses above the slow SMA
 add.rule(strat.name, name = "ruleSignal",
          arguments = list(sigcol = "fast.crossed.above.slow", sigval = TRUE, ordertype = "market", orderside = "long",
@@ -5014,24 +5014,18 @@ add.rule(strat.name, name = "ruleSignal",
          type = "exit", path.dep = TRUE, label = "exitLong.on.close.crossing.fast")
 
 
-# Short 
-#############
-
- #Enter when the fast SMA crosses below the slow SMA
+# Short
+#Enter when the fast SMA crosses below the slow SMA
 add.rule(strat.name, name = "ruleSignal",
         arguments = list(sigcol = "fast.crossed.below.slow", sigval = TRUE, ordertype = "market", orderside = "short",
                           replace = FALSE, prefer = "Open", orderqty = -order.qty, atrMod = "X"),
          type = "enter", path.dep = TRUE, label = "enterShort.safe")
-
 # Short
-
 add.rule(strat.name, name = "ruleSignal",arguments = list(sigcol = "fast.crossed.above.slow", sigval = TRUE, ordertype = "market", orderside = "short",
                           replace = FALSE, prefer = "Open", orderqty = "all", atrMod = "X"),
          type = "exit", path.dep = TRUE, label = "exitShort.on.close.crossing.fast")
-
-
 applyStrategy(strategy = strat.name, portfolios = portofolio.name)
-
+        
 updatePortf(portofolio.name)
 updateAcct(account.name)
 updateEndEq(account.name)
