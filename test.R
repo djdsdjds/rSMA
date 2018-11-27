@@ -44,33 +44,24 @@ library(knitr)
              arguments = list(columns = c(fastSMA.label, slowSMA.label), relationship = "lt"),
              label = "fast.crossed.below.slow")
   
-  # Long rules
-  ############
-  
+  # Long 
   # Enter when the fast SMA crosses above the slow SMA
   add.rule(strat.name, name = "ruleSignal",
            arguments = list(sigcol = "fast.crossed.above.slow", sigval = TRUE, ordertype = "market", orderside = "long",
                             replace = FALSE, prefer = "Open", orderqty = order.qty, atrMod = "X"),
            type = "enter", path.dep = TRUE, label = "enterLong.safe")
-  
   # Exit a long
   add.rule(strat.name, name = "ruleSignal",
            arguments = list(sigcol = "fast.crossed.below.slow", sigval = TRUE, ordertype = "market", orderside = "long",
                             replace = FALSE, prefer = "Open", orderqty = "all", atrMod = "X"),
            type = "exit", path.dep = TRUE, label = "exitLong.on.close.crossing.fast")
-  
-  
-  # Short 
-  #############
-  
+  # Short
   #Enter when the fast SMA crosses below the slow SMA
   add.rule(strat.name, name = "ruleSignal",
            arguments = list(sigcol = "fast.crossed.below.slow", sigval = TRUE, ordertype = "market", orderside = "short",
                             replace = FALSE, prefer = "Open", orderqty = -order.qty, atrMod = "X"),
            type = "enter", path.dep = TRUE, label = "enterShort.safe")
-  
   # Short
-  
   add.rule(strat.name, name = "ruleSignal",arguments = list(sigcol = "fast.crossed.above.slow", sigval = TRUE, ordertype = "market", orderside = "short",
                                                             replace = FALSE, prefer = "Open", orderqty = "all", atrMod = "X"),
            type = "exit", path.dep = TRUE, label = "exitShort.on.close.crossing.fast")
@@ -81,8 +72,6 @@ library(knitr)
   updatePortf(portofolio.name)
   updateAcct(account.name)
   updateEndEq(account.name)
-  
-  
   chart.Posn(portofolio.name, Symbol = sym,
           TA = "add_SMA(n = 50, col = 'red'); add_SMA(n = 200, col = 'blue')")
   
