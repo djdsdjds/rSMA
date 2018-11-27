@@ -1,3 +1,4 @@
+#warning 
 library(quantstrat)
 library(quantmod)
 library(knitr)
