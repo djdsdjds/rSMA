@@ -5002,13 +5002,13 @@ add.signal(strat.name, name = "sigCrossover",
            label = "fast.crossed.below.slow")
 
 # Long
-# Enter when the fast SMA crosses above the slow SMA
+# Enter when fastsma>slowsma
 add.rule(strat.name, name = "ruleSignal",
          arguments = list(sigcol = "fast.crossed.above.slow", sigval = TRUE, ordertype = "market", orderside = "long",
                           replace = FALSE, prefer = "Open", orderqty = order.qty, atrMod = "X"),
          type = "enter", path.dep = TRUE, label = "enterLong.safe")
 
-# Exit a long
+# Exit when fastsma<slowsma
 add.rule(strat.name, name = "ruleSignal",
          arguments = list(sigcol = "fast.crossed.below.slow", sigval = TRUE, ordertype = "market", orderside = "long",
                           replace = FALSE, prefer = "Open", orderqty = "all", atrMod = "X"),
@@ -5016,12 +5016,12 @@ add.rule(strat.name, name = "ruleSignal",
 
 
 # Short
-#Enter when the fast SMA crosses below the slow SMA
+#Enter when fastsma<slowsma 
 add.rule(strat.name, name = "ruleSignal",
         arguments = list(sigcol = "fast.crossed.below.slow", sigval = TRUE, ordertype = "market", orderside = "short",
                           replace = FALSE, prefer = "Open", orderqty = -order.qty, atrMod = "X"),
          type = "enter", path.dep = TRUE, label = "enterShort.safe")
-# Short
+#Exit when fastsma>slowsma
 add.rule(strat.name, name = "ruleSignal",arguments = list(sigcol = "fast.crossed.above.slow", sigval = TRUE, ordertype = "market", orderside = "short",
                           replace = FALSE, prefer = "Open", orderqty = "all", atrMod = "X"),
          type = "exit", path.dep = TRUE, label = "exitShort.on.close.crossing.fast")
